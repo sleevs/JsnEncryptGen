@@ -18,7 +18,7 @@ public class MD5Controller {
     }
 
 
-    @PostMapping("/md5/{password}")
+    @GetMapping("/md5/{password}")
     public String encryptMD5(@PathVariable String password) {
         String encrypt  = MD5Service.getSecurePasswordMD5(password, MD5Service.getSalt());
 
@@ -26,11 +26,5 @@ public class MD5Controller {
         return encrypt;
     }
 
-    @GetMapping("/md5/{password}")
-    public String decriptyMD5(@PathVariable String password) {
-        String encrypt  = MD5Service.getSecurePasswordMD5(password, MD5Service.getSalt());
 
-
-        return encrypt;
-    }
 }
