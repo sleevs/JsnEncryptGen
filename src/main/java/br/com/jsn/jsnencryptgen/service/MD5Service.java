@@ -18,7 +18,6 @@ public class MD5Service {
 
     public String getSecurePasswordMD5(String password , String salt){
 
-        String generatedPassword =  null ;
 
         try {
             logger.info("OPERATION getSecurePasswordMD5()");
@@ -32,7 +31,7 @@ public class MD5Service {
 
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100 , 16).substring(1));
             }
-            return generatedPassword = sb.toString();
+            return sb.toString();
 
         } catch (NoSuchAlgorithmException e) {
             logger.error(e.getMessage());
