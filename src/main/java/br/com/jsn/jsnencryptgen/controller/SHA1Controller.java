@@ -2,6 +2,7 @@ package br.com.jsn.jsnencryptgen.controller;
 
 import br.com.jsn.jsnencryptgen.service.SHAService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,29 +22,33 @@ public class SHA1Controller {
 
 
     @GetMapping("/sha_160/{password}")
-    public String encryptSHA1(@PathVariable String password) {
+    public ResponseEntity<String> encryptSHA1(@PathVariable String password) {
 
-        return shaService.getSHA1SecurePassword(password, shaService.getSalt());
+        String sha1Response = shaService.getSHA1SecurePassword(password, shaService.getSalt());
+        return ResponseEntity.ok(sha1Response);
     }
 
 
     @GetMapping("/sha_256/{password}")
-    public String encryptSHA256(@PathVariable String password) {
+    public ResponseEntity<String> encryptSHA256(@PathVariable String password) {
 
-        return shaService.getSHA256SecurePassword(password, shaService.getSalt());
+        String sha256Response = shaService.getSHA256SecurePassword(password, shaService.getSalt());
+        return ResponseEntity.ok(sha256Response);
     }
 
 
     @GetMapping("/sha_384/{password}")
-    public String encryptSHA384(@PathVariable String password) {
+    public ResponseEntity<String> encryptSHA384(@PathVariable String password) {
 
-        return shaService.getSHA384SecurePassword(password, shaService.getSalt());
+        String sha384Response = shaService.getSHA384SecurePassword(password, shaService.getSalt());
+        return ResponseEntity.ok(sha384Response);
     }
 
 
     @GetMapping("/sha_512/{password}")
-    public String encryptSHA512(@PathVariable String password) {
+    public ResponseEntity<String> encryptSHA512(@PathVariable String password) {
 
-        return shaService.getSHA512SecurePassword(password, shaService.getSalt());
+        String sha512Response = shaService.getSHA512SecurePassword(password, shaService.getSalt());
+        return ResponseEntity.ok(sha512Response);
     }
 }

@@ -2,6 +2,7 @@ package br.com.jsn.jsnencryptgen.controller;
 
 import br.com.jsn.jsnencryptgen.service.PBKDF2Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +21,10 @@ public class PBKDF2Controller {
     }
 
     @GetMapping("/pbkdf2/{password}")
-    public String encryptSHA1(@PathVariable String password) {
+    public ResponseEntity<String> encryptPbkdf2(@PathVariable String password) {
 
-        return pBKDF2Service.generateStrongPasswordHash(password);
+        String pbkdf2Response = pBKDF2Service.generateStrongPasswordHash(password);
+        return ResponseEntity.ok(pbkdf2Response);
     }
 
 
