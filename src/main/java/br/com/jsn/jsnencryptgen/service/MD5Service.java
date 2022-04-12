@@ -10,10 +10,10 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 @Service
-public class BasicMD5Service {
+public class MD5Service {
 
 
-    private static final Logger logger = LogManager.getLogger(BasicMD5Service.class);
+    private static final Logger logger = LogManager.getLogger(MD5Service.class);
 
 
     public String getSecurePasswordMD5(String password , String salt){

@@ -1,31 +1,34 @@
 package br.com.jsn.jsnencryptgen.controller;
 
 
-import br.com.jsn.jsnencryptgen.service.BasicMD5Service;
+import br.com.jsn.jsnencryptgen.service.MD5Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/md5_api")
+@RequestMapping("/api_md5")
 public class MD5Controller {
 
 
-    private BasicMD5Service basicMD5Service ;
+    private MD5Service MD5Service;
 
     @Autowired
-    public MD5Controller (BasicMD5Service basicMD5Service){
-        this.basicMD5Service = basicMD5Service;
+    public MD5Controller (MD5Service MD5Service){
+        this.MD5Service = MD5Service;
     }
 
 
+    @PostMapping("/md5/{password}")
+    public String encryptMD5(@PathVariable String password) {
+        String encrypt  = MD5Service.getSecurePasswordMD5(password, MD5Service.getSalt());
+
+
+        return encrypt;
+    }
+
     @GetMapping("/md5/{password}")
-    public String genMD5(@PathVariable String password) {
-        String encrypt  =basicMD5Service.getSecurePasswordMD5(password, basicMD5Service.getSalt());
+    public String decriptyMD5(@PathVariable String password) {
+        String encrypt  = MD5Service.getSecurePasswordMD5(password, MD5Service.getSalt());
 
 
         return encrypt;
