@@ -1,6 +1,6 @@
 package br.com.jsn.jsnencryptgen.controller;
 
-import br.com.jsn.jsnencryptgen.service.SHA1Service;
+import br.com.jsn.jsnencryptgen.service.SHAService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,37 +13,37 @@ import org.springframework.web.bind.annotation.RestController;
 public class SHA1Controller {
 
 
-    private SHA1Service sha1Service;
+    private SHAService shaService;
     @Autowired
-    public SHA1Controller(SHA1Service sha1Service){
-        this.sha1Service = sha1Service;
+    public SHA1Controller(SHAService shaService){
+        this.shaService = shaService;
     }
 
 
-    @GetMapping("/sha1/{password}")
+    @GetMapping("/sha_160/{password}")
     public String encryptSHA1(@PathVariable String password) {
 
-        return sha1Service.getSHA1SecurePassword(password, sha1Service.getSalt());
+        return shaService.getSHA1SecurePassword(password, shaService.getSalt());
     }
 
 
-    @GetMapping("/SHA256/{password}")
+    @GetMapping("/sha_256/{password}")
     public String encryptSHA256(@PathVariable String password) {
 
-        return sha1Service.getSHA256SecurePassword(password, sha1Service.getSalt());
+        return shaService.getSHA256SecurePassword(password, shaService.getSalt());
     }
 
 
-    @GetMapping("/SHA384/{password}")
+    @GetMapping("/sha_384/{password}")
     public String encryptSHA384(@PathVariable String password) {
 
-        return sha1Service.getSHA384SecurePassword(password, sha1Service.getSalt());
+        return shaService.getSHA384SecurePassword(password, shaService.getSalt());
     }
 
 
-    @GetMapping("/SHA512/{password}")
+    @GetMapping("/sha_512/{password}")
     public String encryptSHA512(@PathVariable String password) {
 
-        return sha1Service.getSHA512SecurePassword(password, sha1Service.getSalt());
+        return shaService.getSHA512SecurePassword(password, shaService.getSalt());
     }
 }

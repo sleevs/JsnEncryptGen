@@ -9,9 +9,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 @Service
-public class SHA1Service {
+public class SHAService {
 
-    private static final Logger logger = LogManager.getLogger(SHA1Service.class);
+    private static final Logger logger = LogManager.getLogger(SHAService.class);
 
 
     public String getSHA1SecurePassword(String senha , String salt){
