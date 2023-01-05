@@ -3,6 +3,7 @@ package br.com.jsn.jsnencryptgen.controller;
 
 import br.com.jsn.jsnencryptgen.service.MD5Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,11 +20,10 @@ public class MD5Controller {
 
 
     @GetMapping("/md5/{password}")
-    public String encryptMD5(@PathVariable String password) {
-        String encrypt  = MD5Service.getSecurePasswordMD5(password, MD5Service.getSalt());
+    public ResponseEntity<String> encryptMD5(@PathVariable String password) {
+        String md5Response  = MD5Service.getSecurePasswordMD5(password, MD5Service.getSalt());
 
-
-        return encrypt;
+        return ResponseEntity.ok(md5Response);
     }
 
 
