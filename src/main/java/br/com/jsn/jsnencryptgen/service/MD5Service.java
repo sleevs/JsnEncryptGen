@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -54,6 +55,42 @@ public class MD5Service {
             e.printStackTrace();
         }
         return null ;
+    }
+
+
+
+    public boolean validar(String origin ,String compare){
+
+        String md5 = null ;
+
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(compare.getBytes());
+            byte[] digest = md.digest();
+
+            md5 = new BigInteger(1 , md.digest()).toString(16);
+
+            return md5.equals(origin);
+        }catch(Exception e){
+            e.getMessage();
+
+        }
+        return false ;
+
+
+    }
+
+
+    public static void main(String args []){
+
+        MD5Service teste  = new MD5Service();
+
+        String resultado = teste.getSecurePasswordMD5("teste", teste.getSalt());
+        System.out.println(resultado);
+
+
+        boolean chave = teste.validar(resultado, "teste");
+        System.out.println(chave);
     }
 
 }
