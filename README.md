@@ -1,6 +1,6 @@
 # JsnEncryptGen
 
-Demo of API to encrypt and decrypt string with diffrents algorithms
+Demo of API to encrypt and decrypt string with different algorithms.
 
 - Base64
 - SHA1
